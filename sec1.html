@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hire to Scale | Build Winning Teams</title>
+
+  <!-- Premium + clean font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* ✅ RED THEME (professional) */
+      --bg0:#0b0b0f;
+      --bg1:#120c10;
+
+      --card: rgba(255,255,255,.06);
+      --cardSolid:#131018;
+      --text:#f8fafc;
+      --muted: rgba(248,250,252,.74);
+      --line: rgba(255,255,255,.12);
+
+      /* Primary reds */
+      --accent:#ef4444;     /* red-500 */
+      --accentDeep:#dc2626; /* red-600 */
+      --accentDark:#991b1b; /* red-800 */
+
+      /* Optional secondary glow */
+      --violet:#a855f7;
+      --blue:#2563eb;
+
+      --shadow: 0 24px 80px rgba(0,0,0,.55);
+      --shadowSoft: 0 14px 45px rgba(0,0,0,.35);
+
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1100px;
+
+      /* Optional hero image */
+      --hero-image: none; /* Example: url('your-wallpaper.jpg'); */
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 520px at 15% 10%, rgba(239,68,68,.18), transparent 60%),
+        radial-gradient(900px 520px at 85% 20%, rgba(168,85,247,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    /* Subtle noise overlay */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.07;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    a { color: inherit; }
+
+    .container{
+      width:100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Top nav */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(10,10,14,.62);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar .inner{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      white-space: nowrap;
+    }
+    .brand-badge{
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accentDeep));
+      box-shadow: 0 14px 30px rgba(239,68,68,.25);
+    }
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      text-decoration:none;
+      font-weight: 800;
+      letter-spacing: .15px;
+      border: 1px solid transparent;
+      transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+      user-select: none;
+      cursor: pointer;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .btn:active{ transform: translateY(1px); }
+
+    /* ✅ Attractive Red Primary */
+    .btn-primary{
+      color:#fff;
+      background: linear-gradient(135deg, var(--accent), var(--accentDeep));
+      box-shadow: 0 18px 55px rgba(239,68,68,.24);
+      border-color: rgba(255,255,255,.10);
+    }
+    .btn-primary:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 26px 90px rgba(239,68,68,.32);
+    }
+
+    /* ✅ Dark glass secondary */
+    .btn-ghost{
+      color: rgba(248,250,252,.92);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.14);
+    }
+    .btn-ghost:hover{
+      background: rgba(255,255,255,.10);
+      transform: translateY(-1px);
+    }
+
+    /* ✅ Outline red */
+    .btn-outline{
+      color: rgba(248,250,252,.92);
+      background: transparent;
+      border-color: rgba(239,68,68,.55);
+    }
+    .btn-outline:hover{
+      background: rgba(239,68,68,.12);
+      transform: translateY(-1px);
+    }
+
+    .btn-wide{ padding: 16px 22px; border-radius: 14px; }
+
+    /* Hero */
+    .hero{
+      position: relative;
+      padding: 78px 0 48px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background-image:
+        linear-gradient(180deg, rgba(10,10,14,.18), rgba(10,10,14,.78)),
+        radial-gradient(900px 520px at 18% 10%, rgba(239,68,68,.36), transparent 60%),
+        radial-gradient(900px 520px at 85% 18%, rgba(168,85,247,.18), transparent 60%),
+        var(--hero-image);
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      filter: saturate(1.05);
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(650px 350px at 35% 20%, rgba(255,255,255,.07), transparent 60%),
+        radial-gradient(800px 450px at 75% 35%, rgba(255,255,255,.05), transparent 65%);
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .hero .grid{
+      position: relative;
+      z-index: 1;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 26px;
+      align-items: center;
+      padding: 22px 0 10px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(248,250,252,.80);
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .kicker-dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(34,197,94,1);
+      box-shadow: 0 0 0 6px rgba(34,197,94,.14);
+    }
+
+    h1{
+      margin: 14px 0 10px;
+      font-size: 46px;
+      line-height: 1.06;
+      letter-spacing: -0.9px;
+      color: #fff;
+    }
+    .subhead{
+      margin: 0 0 14px;
+      font-size: 18px;
+      color: rgba(248,250,252,.82);
+      max-width: 58ch;
+    }
+    .hero-actions{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    /* Cover mock */
+    .cover{
+      border-radius: var(--radius2);
+      padding: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadowSoft);
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow:hidden;
+      min-height: 290px;
+    }
+    .cover::before{
+      content:"";
+      position:absolute;
+      inset:-60px -60px auto auto;
+      width: 260px;
+      height: 260px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(239,68,68,.45), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(168,85,247,.25), transparent 60%);
+      transform: rotate(12deg);
+      opacity: .95;
+    }
+    .cover .tag{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(248,250,252,.88);
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 8px 10px;
+      border-radius: 999px;
+      position: relative;
+      z-index: 1;
+    }
+    .cover h3{
+      margin: 14px 0 8px;
+      font-size: 22px;
+      letter-spacing: -0.3px;
+      position: relative;
+      z-index: 1;
+      color: #fff;
+    }
+    .cover p{
+      margin: 0;
+      color: rgba(248,250,252,.82);
+      position: relative;
+      z-index: 1;
+    }
+    .cover .meta{
+      margin-top: 18px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .pill{
+      font-size: 12px;
+      font-weight: 800;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(248,250,252,.86);
+    }
+
+    /* Sections */
+    main{ padding: 18px 0 76px; }
+
+    .section{
+      margin-top: 22px;
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadowSoft);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+    .section-inner{ padding: 34px; }
+    .section h2{
+      margin: 0 0 10px;
+      font-size: 26px;
+      letter-spacing: -0.3px;
+      color: #fff;
+    }
+    .section p{
+      margin: 0 0 12px;
+      color: rgba(248,250,252,.80);
+      font-size: 16px;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    /* Lists */
+    ul.clean{
+      list-style:none;
+      padding:0;
+      margin: 16px 0 0;
+      display:grid;
+      gap: 12px;
+    }
+    ul.clean li{
+      padding-left: 34px;
+      position: relative;
+      color: rgba(248,250,252,.88);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    ul.clean li::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:2px;
+      width:22px;
+      height:22px;
+      border-radius:7px;
+      background: linear-gradient(135deg, rgba(34,197,94,1), rgba(16,185,129,1));
+      box-shadow: 0 12px 24px rgba(34,197,94,.15);
+    }
+    ul.clean li::after{
+      content:"";
+      position:absolute;
+      left:7px;
+      top:8px;
+      width:8px;
+      height:5px;
+      border:2px solid #fff;
+      border-top:0;
+      border-right:0;
+      transform: rotate(-45deg);
+      opacity:.95;
+    }
+
+    /* Highlight box */
+    .highlight{
+      margin-top: 18px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(239,68,68,.14), rgba(255,255,255,.05));
+      border: 1px solid rgba(239,68,68,.24);
+      padding: 18px;
+      position: relative;
+      overflow:hidden;
+    }
+    .highlight::before{
+      content:"";
+      position:absolute;
+      inset:-40px auto auto -40px;
+      width:180px;
+      height:180px;
+      background: radial-gradient(circle, rgba(239,68,68,.35), transparent 60%);
+      opacity:.8;
+    }
+    .highlight h3{
+      margin:0 0 10px;
+      font-size:18px;
+      position:relative;
+      z-index:1;
+      color:#fff;
+    }
+    .highlight ul{
+      margin:0;
+      padding-left:18px;
+      position:relative;
+      z-index:1;
+      color: rgba(248,250,252,.86);
+    }
+    .highlight li{ margin:10px 0; }
+
+    /* CTA strip */
+    .cta-strip{
+      margin-top: 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+      align-items:center;
+    }
+
+    /* Divider */
+    .divider{
+      margin: 22px 0 0;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+
+    /* Thank you */
+    .thankyou{
+      background: linear-gradient(180deg, rgba(239,68,68,.12), rgba(255,255,255,.05));
+      border-color: rgba(239,68,68,.22);
+    }
+    .thankyou h2{ font-size: 28px; }
+    .note{
+      color: rgba(248,250,252,.72);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 30px;
+      padding: 26px 0 34px;
+      color: rgba(248,250,252,.70);
+      font-size: 13px;
+      text-align:center;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero .grid{ grid-template-columns: 1fr; }
+      .cover{ min-height: 240px; }
+      h1{ font-size: 40px; }
+    }
+    @media (max-width: 640px){
+      .section-inner{ padding: 22px; }
+      h1{ font-size: 34px; }
+      .two-col{ grid-template-columns: 1fr; }
+      .btn{ width: 100%; }
+      .nav-actions .btn{ width: auto; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="container">
+      <div class="inner">
+        <div class="brand">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span>Hire to Scale</span>
+        </div>
+        <div class="nav-actions">
+          <a class="btn btn-ghost" href="#strategy">Strategy Call</a>
+          <a class="btn btn-primary" href="#download">Download eBook</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="grid">
+        <div>
+          <div class="kicker"><span class="kicker-dot"></span> Founder-tested hiring framework</div>
+          <h1>Ready to Hire Smarter?</h1>
+          <p class="subhead">
+            Build a team that grows your business — not breaks it.
+            Download your <strong>FREE copy</strong> of
+            <em>“Hire to Scale: The Entrepreneur’s Playbook for Building Winning Teams”</em>.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#download" class="btn btn-primary btn-wide">Download the eBook</a>
+            <a href="#strategy" class="btn btn-outline btn-wide">Book a 45-min Strategy Call</a>
+          </div>
+
+          <p class="note">No spam. Practical insights you can apply immediately.</p>
+        </div>
+
+        <!-- Cover mock -->
+        <aside class="cover" aria-label="eBook preview">
+          <div class="tag">📘 eBook Preview</div>
+          <h3>Hire to Scale</h3>
+          <p>
+            A step-by-step playbook to define roles clearly, hire for fit, and onboard for performance.
+          </p>
+          <div class="meta">
+            <span class="pill">Role clarity</span>
+            <span class="pill">Hiring scorecards</span>
+            <span class="pill">Onboarding plan</span>
+            <span class="pill">Retention</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- EBOOK DETAILS -->
+    <section class="section" id="download">
+      <div class="section-inner">
+        <div class="two-col">
+          <div>
+            <h2>What You’ll Learn Inside the eBook</h2>
+            <p>
+              Clear, actionable steps to reduce hiring mistakes and build a team that executes without constant firefighting.
+            </p>
+
+            <ul class="clean">
+              <li>How one wrong hire can quietly cost you <strong>$200,000+</strong> — and how to avoid it</li>
+              <li>The biggest mistake founders make when defining roles</li>
+              <li>A proven way to identify the right fit beyond resumes and interviews</li>
+              <li>How to onboard so new hires become productive from Day 1</li>
+              <li>Real strategies used by fast-growing companies to hire smarter, not harder</li>
+            </ul>
+
+            <div class="cta-strip">
+              <a href="#" class="btn btn-primary">Download the eBook Now</a>
+              <a href="#strategy" class="btn btn-ghost">Prefer guidance? Book a call</a>
+            </div>
+          </div>
+
+          <div class="highlight">
+            <h3>Real Results from This Framework</h3>
+            <ul>
+              <li>[Insert TTI metric – reduction in hiring errors]</li>
+              <li>[Insert TTI metric – improved retention & productivity]</li>
+              <li>[Insert TTI metric – measurable cost savings]</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRATEGY CALL -->
+    <section class="section" id="strategy">
+      <div class="section-inner">
+        <h2>Facing Challenges in Your Business?</h2>
+        <p>If hiring, leadership, or growth feels stuck, you don’t have to figure it out alone.</p>
+        <p>
+          Book a <strong>complimentary 45-minute strategy call</strong> with Rajesh Tedla and walk away with:
+        </p>
+
+        <ul class="clean">
+          <li>Clear next steps</li>
+          <li>Practical, real-world solutions</li>
+          <li>Confidence to move forward</li>
+        </ul>
+
+        <div class="cta-strip">
+          <a href="#" class="btn btn-primary btn-wide">Book Your Strategy Call</a>
+          <a href="#download" class="btn btn-outline btn-wide">Download the eBook instead</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- THANK YOU SECTION -->
+    <section class="section thankyou">
+      <div class="section-inner">
+        <h2>🎉 Thank You! Your eBook Is on Its Way</h2>
+        <p>
+          Your free copy of <em>“Hire to Scale: The Entrepreneur’s Playbook for Building Winning Teams”</em>
+          will arrive in your inbox within the next 24 hours.
+        </p>
+        <p class="note">Tip: If you don’t see it, check Promotions/Spam and move it to your Primary inbox.</p>
+
+        <div class="divider"></div>
+
+        <h3 style="margin:18px 0 10px; color:#fff;">🎥 Want to See How This Works in Your Business?</h3>
+        <p>Watch a short training video where Rajesh explains exactly how to apply this framework.</p>
+        <div class="cta-strip">
+          <a href="#" class="btn btn-primary">Yes, Send Me the Video</a>
+          <a href="#strategy" class="btn btn-ghost">Or book a strategy call</a>
+        </div>
+
+        <h3 style="margin:26px 0 10px; color:#fff;">🤝 Have Questions or a Hiring Challenge?</h3>
+        <p>Get direct guidance in a 45-minute strategy call.</p>
+        <a href="#" class="btn btn-primary btn-wide">Book a Strategy Call with Rajesh</a>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Hire to Scale. All Rights Reserved.
+    </footer>
+
+  </main>
+
+</body>
+</html>
